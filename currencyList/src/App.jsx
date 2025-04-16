@@ -40,7 +40,7 @@ const App = () => {
         setRates(ratesArray);
         setError(null);
       } catch (err) {
-        setError(err.message || "Failed to fetch data");
+        setError(err.message || "Data fetch failed");
       } finally {
         setIsLoading(false);
       }
@@ -72,10 +72,10 @@ const App = () => {
           value={itemsPerPage}
           onChange={handleItemsPerPageChange}
         >
+          <option value={5}>5</option>
           <option value={10}>10</option>
+          <option value={15}>15</option>
           <option value={20}>20</option>
-          <option value={50}>50</option>
-          <option value={100}>100</option>
         </select>
       </div>
 
@@ -83,7 +83,7 @@ const App = () => {
         items={rates.slice(0, itemsPerPage)}
         renderItem={(rate) => (
           <div className="rate-item">
-            <strong>{rate.currency}:</strong> {rate.rate.toFixed(4)}
+            <strong>{rate.currency}:</strong> {rate.rate.toFixed(3)}
           </div>
         )}
       />
